@@ -1,28 +1,32 @@
 ﻿#pragma once
 #include <iostream>
 
+#ifdef _WIN32
 #ifdef FIGURES_EXPORTS
 #define FIGURES_API __declspec(dllexport)
 #else
 #define FIGURES_API __declspec(dllimport)
 #endif
+#else
+#define FIGURES_API
+#endif
 
-class Figure
+class FIGURES_API Figure
 {
 public:
-	FIGURES_API Figure();
+	Figure();
 
-	FIGURES_API std::string& getName();
+	std::string& getName();
 
-	FIGURES_API unsigned int getSideCount();
+	unsigned int getSideCount();
 
-	FIGURES_API void printString();
+	void printString();
 
 protected:
 	std::string _name;
 	unsigned int _sideCount = 0;
 
-	FIGURES_API virtual void printSideInfo();
+	virtual void printSideInfo();
 
-	FIGURES_API virtual void printAngleInfo();
+	virtual void printAngleInfo();
 };
